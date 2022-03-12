@@ -7,6 +7,13 @@ const port = 2007;
 const mongourl = "mongodb+srv://venky:venky123@cluster0.bxnfz.mongodb.net/venkatesh?retryWrites=true&w=majority";
 let db; app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        status: "success",
+        message: "Don't close to anyone"
+    })
+})
+
 /**************** SIGNUP ****************/
 app.post('/app', (req, res) => {
     var hashpassword = bcrypt.hashSync(req.body.password);
@@ -53,7 +60,7 @@ app.post('/app1', (req, res) => {
 
     })
 })/**************** GET ALL USERS ****************/
-app.get('/app', (req, res) => {
+app.get('/app2', (req, res) => {
     db.collection('signupnode').find().toArray((err, result) => {
         res.status(200).json({
             data: result
